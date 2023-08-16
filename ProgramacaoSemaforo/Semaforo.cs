@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProgramacaoSemaforo
 {
-    internal class SemaforoBinario
+    internal class Semaforo
     {
 
         private int maxThreads; // O máximo de Threads que poderão executar simultaneamente
@@ -21,7 +21,7 @@ namespace ProgramacaoSemaforo
         /* Inicialmente o construtor configura a quantidade de execuções totais e livres para o mesmo valor,
          * afinal não existe nenhum bloqueio no momento
          */
-        public SemaforoBinario(int quantThreads)
+        public Semaforo(int quantThreads)
         {
             execLivres = quantThreads;
             maxThreads = quantThreads;
@@ -38,8 +38,8 @@ namespace ProgramacaoSemaforo
          * 
          * No teste com 3 threads e uma vaga:
          * - a 1º a chamar o método diminui o execLivres para 0
-         * - a 2º a chamar fica presa no Monitor.Wait
-         * - a 3º a chamar fica presa na linha de lock, aguardando a liberação para verificar se tem vaga livre
+         * - a 2º a chamar fica presa no Monitor.Wait, liberando a 3º para adentrar na região crítica
+         * - a 3º a chamar fica presa no Monitor.Wait
          */
         public void FecharSemaforo()
         {

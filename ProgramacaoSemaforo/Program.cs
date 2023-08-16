@@ -5,13 +5,10 @@ namespace ProgramacaoSemaforo
 {
     internal class Program
     {
-        /* A classe CasoCorreto simula uma situação de acesso ao recurso cujo o uso do semáforo foi 
-         * implementado corretamente.
-         */
-
+   
         /* É criado um novo semáforo que permite apenas uma thread acesse o recurso por vez.
          */
-        public static SemaforoBinario semaforo = new SemaforoBinario(1);
+        public static Semaforo semaforo = new Semaforo(1);
         static void Main(string[] args)
         {
             /* Cria 3 threads que acessarão o método recurso, e as inicia. 
@@ -29,6 +26,7 @@ namespace ProgramacaoSemaforo
             t3.Start();
 
             //semaforo.FecharSemaforo();
+
             /* Caso de uso incorreto se fechar o semáforo na linha 21.
              * Isso fará com que a thread Main até execute o semáforo, porém as 3 threads criadas
              * já começam dentro do método recurso e, com isso, não reconhecem nenhum bloqueio e concorrem pelo mesmo recurso
